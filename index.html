@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punto Sushi Eventos — Catering & Sushi Party · GBA Norte</title>
+<meta name="description" content="Catering de sushi premium para eventos en GBA Norte. Bandejas artesanales y sushiman en vivo para cumpleaños, casamientos y eventos corporativos. Más de 10 años en la zona.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #B92B27;
+    --red-dark: #8B1A17;
+    --red-light: #F7EEEE;
+    --ink: #1A1410;
+    --ink-mid: #4A3F38;
+    --ink-light: #8C7E76;
+    --cream: #FAF7F4;
+    --cream-dark: #F0EAE3;
+    --white: #FFFFFF;
+    --border: rgba(26,20,16,0.1);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,247,244,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-brand span { color: var(--red); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--red); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 60px;
+  }
+
+  .hero-left {
+    background: var(--ink);
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--red);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    transition: background 0.2s, transform 0.15s;
+    width: fit-content;
+  }
+
+  .hero-cta:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+  .hero-cta svg { width: 18px; height: 18px; }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background: var(--white);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-badge-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .hero-badge-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  /* STRIP */
+  .strip {
+    background: var(--red);
+    padding: 1rem 2rem;
+    overflow: hidden;
+  }
+
+  .strip-inner {
+    display: flex;
+    gap: 3rem;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* SECTION BASE */
+  section { padding: 5rem 2rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--ink-light);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* SERVICIOS */
+  #servicios { background: var(--white); }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  .servicio-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+
+  .servicio-card:hover { background: var(--cream); }
+
+  .servicio-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .servicio-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .servicio-desc {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+
+  /* PAQUETES */
+  #paquetes { background: var(--cream); }
+
+  .paquetes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .paquete-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .paquete-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(26,20,16,0.08);
+  }
+
+  .paquete-card.featured {
+    border-color: var(--red);
+    border-width: 2px;
+  }
+
+  .paquete-badge {
+    position: absolute;
+    top: -12px;
+    left: 2rem;
+    background: var(--red);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+  }
+
+  .paquete-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .paquete-personas {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .paquete-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .paquete-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .paquete-items li {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    display: flex;
+    gap: 8px;
+  }
+
+  .paquete-items li::before {
+    content: "✓";
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .paquete-precio {
+    font-size: 13px;
+    color: var(--ink-light);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .paquete-cta {
+    display: block;
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .paquete-cta:hover, .paquete-card.featured .paquete-cta {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+
+  /* GALERÍA */
+  #galeria { background: var(--ink); padding: 5rem 2rem; }
+
+  #galeria .section-title { color: var(--white); }
+  #galeria .section-eyebrow { color: var(--red); }
+  #galeria .section-sub { color: rgba(255,255,255,0.5); }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 280px 280px;
+    gap: 4px;
+    margin-top: 3rem;
+  }
+
+  .galeria-img {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .galeria-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .galeria-img:hover img { transform: scale(1.04); }
+
+  .galeria-img.big { grid-row: span 2; }
+
+  /* POR QUÉ */
+  #porque { background: var(--cream-dark); }
+
+  .porque-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+    align-items: center;
+  }
+
+  .porque-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .porque-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .porque-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--red);
+    opacity: 0.25;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 3rem;
+  }
+
+  .porque-content h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .porque-content p {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+
+  .porque-img {
+    position: relative;
+  }
+
+  .porque-img img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* CONTACTO */
+  #contacto {
+    background: var(--ink);
+    text-align: center;
+  }
+
+  #contacto .section-title { color: var(--white); }
+  #contacto .section-eyebrow { color: var(--red); }
+
+  .contacto-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .contacto-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 1.1rem 2.5rem;
+    transition: background 0.2s, transform 0.15s;
+    margin-bottom: 2rem;
+  }
+
+  .contacto-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+  .contacto-wa svg { width: 22px; height: 22px; }
+
+  .contacto-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 0.5px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+  }
+
+  .contacto-info-item {
+    text-align: center;
+  }
+
+  .contacto-info-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+
+  .contacto-info-val {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0F0C0A;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .wa-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+  }
+
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 4rem 2rem; }
+    .hero-right { height: 60vw; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .paquetes-grid { grid-template-columns: 1fr; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .galeria-img.big { grid-row: span 1; }
+    .porque-grid { grid-template-columns: 1fr; }
+    .porque-img { display: none; }
+    .nav-links { display: none; }
+    .contacto-info { gap: 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .strip-inner { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Punto <span>Sushi</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#paquetes">Paquetes</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Catering & Sushi Party · GBA Norte</p>
+    <h1 class="hero-title">El sushi que hace<br>que tu evento <em>no<br>se olvide</em></h1>
+    <p class="hero-sub">Bandejas de sushi de autor y sushiman en vivo para cumpleaños, eventos corporativos y casamientos. Con más de 10 años de presencia en GBA Norte.</p>
+    <a href="https://wa.me/541165117117?text=Hola%2C%20quisiera%20consultar%20sobre%20catering%20para%20un%20evento" class="hero-cta" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.832L.057 23.468a.5.5 0 00.61.611l5.7-1.477A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.956 9.956 0 01-5.073-1.383l-.362-.214-3.747.971.999-3.662-.235-.376A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Consultá tu evento
+    </a>
+  </div>
+  <div class="hero-right">
+    <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUD_hopKv0xe2GUaaDdEcSqiJgQruVj_uX513YOFL-dD04gB0FsnEWS9ezBYS55M_Fw-H6GUIBe3hVPHSkwfi9lraXMEbV5NQdBKdSLJW-l8B-Gr9PPUs1KpKQ_Q0v-2bzBM7cc3yaS8JaOb8f1KbNdoQs6OpMASf8uNWx-5zovognvA1aSDWVjfr7dcLUI=w1280" alt="Bandejas de sushi Punto Sushi Eventos" loading="eager">
+    <div class="hero-badge">
+      <span class="hero-badge-num">+10</span>
+      <span class="hero-badge-label">años en GBA Norte</span>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-inner">
+    <span>Sushi Party</span><span>·</span>
+    <span>Catering Corporativo</span><span>·</span>
+    <span>Sushiman en Vivo</span><span>·</span>
+    <span>Cumpleaños</span><span>·</span>
+    <span>Casamientos</span><span>·</span>
+    <span>Eventos Empresariales</span><span>·</span>
+    <span>GBA Norte</span><span>·</span>
+    <span>Zona Norte</span><span>·</span>
+    <span>GBA Norte</span><span>·</span>
+    <span>Zona Norte</span><span>·</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <p class="section-eyebrow">Lo que hacemos</p>
+    <h2 class="section-title">Una propuesta completa<br>para cada evento</h2>
+    <p class="section-sub">Desde bandejas listas para servir hasta el show gastronómico completo con nuestro chef en vivo.</p>
+
+    <div class="servicios-grid">
+      <div class="servicio-card">
+        <span class="servicio-icon">🍱</span>
+        <h3 class="servicio-title">Bandejas premium</h3>
+        <p class="servicio-desc">Rolls, nigiris y sashimi presentados en pizarras negras con decoración incluida. Listos para servir en tu domicilio o salón, con salsas, jengibre y wasabi.</p>
+      </div>
+      <div class="servicio-card">
+        <span class="servicio-icon">🔪</span>
+        <h3 class="servicio-title">Sushiman en vivo</h3>
+        <p class="servicio-desc">Nuestro chef prepara el sushi en el lugar. Una experiencia gastronómica que se convierte en el show de tu evento. Ideal para 30 personas en adelante.</p>
+      </div>
+      <div class="servicio-card">
+        <span class="servicio-icon">💼</span>
+        <h3 class="servicio-title">Catering corporativo</h3>
+        <p class="servicio-desc">Coffee breaks, desayunos ejecutivos y almuerzos de trabajo para empresas y estudios profesionales de GBA Norte. Propuestas flexibles para cada reunión.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAQUETES -->
+<section id="paquetes">
+  <div class="container">
+    <p class="section-eyebrow">Propuestas</p>
+    <h2 class="section-title">Elegí el paquete<br>para tu evento</h2>
+    <p class="section-sub">Todos los precios se actualizan según el momento. Consultanos y armamos una propuesta a tu medida.</p>
+
+    <div class="paquetes-grid">
+
+      <div class="paquete-card">
+        <p class="paquete-name">Básico</p>
+        <p class="paquete-personas">Hasta 15 personas</p>
+        <div class="paquete-divider"></div>
+        <ul class="paquete-items">
+          <li>60 piezas surtidas (rolls + nigiris)</li>
+          <li>Presentación en pizarra negra decorada</li>
+          <li>Salsas, jengibre y wasabi incluidos</li>
+          <li>Entrega en domicilio o salón</li>
+          <li>Sin cargo en radio GBA Norte</li>
+        </ul>
+        <p class="paquete-precio">Precio a confirmar según fecha</p>
+        <a href="https://wa.me/541165117117?text=Hola%2C%20me%20interesa%20el%20paquete%20B%C3%A1sico%20para%20un%20evento" class="paquete-cta" target="_blank" rel="noopener">Consultar precio</a>
+      </div>
+
+      <div class="paquete-card featured">
+        <div class="paquete-badge">Más elegido</div>
+        <p class="paquete-name">Estándar</p>
+        <p class="paquete-personas">15 a 30 personas</p>
+        <div class="paquete-divider"></div>
+        <ul class="paquete-items">
+          <li>2 bandejas de 60 piezas c/u</li>
+          <li>Mix de rolls clásicos, especiales y nigiris</li>
+          <li>Presentación en pizarras con decoración premium</li>
+          <li>Salsas, jengibre y wasabi incluidos</li>
+          <li>Coordinación de entrega y montaje</li>
+        </ul>
+        <p class="paquete-precio">Precio a confirmar según fecha</p>
+        <a href="https://wa.me/541165117117?text=Hola%2C%20me%20interesa%20el%20paquete%20Est%C3%A1ndar%20para%20un%20evento" class="paquete-cta" target="_blank" rel="noopener">Consultar precio</a>
+      </div>
+
+      <div class="paquete-card">
+        <p class="paquete-name">Premium</p>
+        <p class="paquete-personas">30 personas en adelante</p>
+        <div class="paquete-divider"></div>
+        <ul class="paquete-items">
+          <li>Sushiman profesional en el lugar (2–3 hs)</li>
+          <li>Bandejas de entrada de bienvenida</li>
+          <li>Preparación en vivo de rolls y nigiris</li>
+          <li>Menú personalizable</li>
+          <li>Mise en place completa incluida</li>
+          <li>Ideal para casamientos y eventos corporativos</li>
+        </ul>
+        <p class="paquete-precio">Precio a confirmar según fecha</p>
+        <a href="https://wa.me/541165117117?text=Hola%2C%20me%20interesa%20el%20paquete%20Premium%20con%20sushiman%20en%20vivo" class="paquete-cta" target="_blank" rel="noopener">Consultar precio</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="container">
+    <p class="section-eyebrow">Nuestro trabajo</p>
+    <h2 class="section-title">Cada evento,<br>una producción</h2>
+    <p class="section-sub">Algunas de nuestras producciones recientes en GBA Norte.</p>
+
+    <div class="galeria-grid">
+      <div class="galeria-img big">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUD_hopKv0xe2GUaaDdEcSqiJgQruVj_uX513YOFL-dD04gB0FsnEWS9ezBYS55M_Fw-H6GUIBe3hVPHSkwfi9lraXMEbV5NQdBKdSLJW-l8B-Gr9PPUs1KpKQ_Q0v-2bzBM7cc3yaS8JaOb8f1KbNdoQs6OpMASf8uNWx-5zovognvA1aSDWVjfr7dcLUI=w1280" alt="Evento Punto Sushi" loading="lazy">
+      </div>
+      <div class="galeria-img">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCaDZRyEL7iqC_rWgqZ-dDBPlPueM-aA8QZs0Wcu-2o5UZL1LB-p-uV3pkxLB-WgkRKDeCsiaMvvMkGkAWcptirMGwJcYhBJgOBJ5T-MAY69h17ml6fiOjdrxzKWewb0JkeXFCH8umUw6CIckxYx8nrWa3Kel_yGrP72tsS9w_6Lktuw9Oubk-cYNnFMcr1dvGyvOGvpsebq9STqQDVQM4k79SLht9ICh-92F2vSYc=w1280" alt="Sushi Party Punto Sushi" loading="lazy">
+      </div>
+      <div class="galeria-img">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDJdREvSU-FxAyaIGdiadJmkNPruCJhr5AK4JRUxC1kA1PGgDa6sQgckr-7eIiWbUEuEvo0QSMpyhooXD01G3-XcP3N1bbCQrErBewcFNZhhARcYkY1tv_pSbP_0khZ9nMFijwOVmsM9ltgKglCifjt7NXjtviO2nPeI5_5no-tzcxbinT0ED9gCoMywv8MU7CK7pgitOywK6mHLTlZnLAJ7q1bOJwpd3FuDw=w1280" alt="Catering Punto Sushi" loading="lazy">
+      </div>
+      <div class="galeria-img">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUD_hopKv0xe2GUaaDdEcSqiJgQruVj_uX513YOFL-dD04gB0FsnEWS9ezBYS55M_Fw-H6GUIBe3hVPHSkwfi9lraXMEbV5NQdBKdSLJW-l8B-Gr9PPUs1KpKQ_Q0v-2bzBM7cc3yaS8JaOb8f1KbNdoQs6OpMASf8uNWx-5zovognvA1aSDWVjfr7dcLUI=w1280" alt="Sushi evento GBA Norte" loading="lazy">
+      </div>
+      <div class="galeria-img">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCaDZRyEL7iqC_rWgqZ-dDBPlPueM-aA8QZs0Wcu-2o5UZL1LB-p-uV3pkxLB-WgkRKDeCsiaMvvMkGkAWcptirMGwJcYhBJgOBJ5T-MAY69h17ml6fiOjdrxzKWewb0JkeXFCH8umUw6CIckxYx8nrWa3Kel_yGrP72tsS9w_6Lktuw9Oubk-cYNnFMcr1dvGyvOGvpsebq9STqQDVQM4k79SLht9ICh-92F2vSYc=w1280" alt="Bandejas sushi premium" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section id="porque">
+  <div class="container">
+    <div class="porque-grid">
+      <div>
+        <p class="section-eyebrow">Por qué elegirnos</p>
+        <h2 class="section-title">Calidad, experiencia<br>y precio justo</h2>
+        <div class="porque-list" style="margin-top:2rem">
+          <div class="porque-item">
+            <span class="porque-num">01</span>
+            <div class="porque-content">
+              <h3>Más de 10 años en GBA Norte</h3>
+              <p>Presencia histórica y consolidada en la zona. Conocemos el cliente, los tiempos y lo que hace falta para que cada evento salga perfecto.</p>
+            </div>
+          </div>
+          <div class="porque-item">
+            <span class="porque-num">02</span>
+            <div class="porque-content">
+              <h3>Presentación que habla sola</h3>
+              <p>Cada bandeja llega decorada y lista para servir. Pizarras negras, caviar, pepino y vegetales frescos en cada producción.</p>
+            </div>
+          </div>
+          <div class="porque-item">
+            <span class="porque-num">03</span>
+            <div class="porque-content">
+              <h3>El show del sushiman en vivo</h3>
+              <p>Una experiencia gastronómica que transforma cualquier evento. Tus invitados no lo van a olvidar.</p>
+            </div>
+          </div>
+          <div class="porque-item">
+            <span class="porque-num">04</span>
+            <div class="porque-content">
+              <h3>Superamos cualquier propuesta</h3>
+              <p>Precio, calidad y experiencia. Pedinos una contrapropuesta, sin compromiso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="porque-img">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDJdREvSU-FxAyaIGdiadJmkNPruCJhr5AK4JRUxC1kA1PGgDa6sQgckr-7eIiWbUEuEvo0QSMpyhooXD01G3-XcP3N1bbCQrErBewcFNZhhARcYkY1tv_pSbP_0khZ9nMFijwOVmsM9ltgKglCifjt7NXjtviO2nPeI5_5no-tzcxbinT0ED9gCoMywv8MU7CK7pgitOywK6mHLTlZnLAJ7q1bOJwpd3FuDw=w1280" alt="Sushi premium Punto Sushi">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <p class="section-eyebrow">Hablemos</p>
+    <h2 class="section-title">¿Tenés un evento próximo?</h2>
+    <p class="contacto-sub">Consultanos sin compromiso. Armamos la propuesta a tu medida en menos de 24 horas.</p>
+
+    <a href="https://wa.me/541165117117?text=Hola%2C%20quisiera%20consultar%20sobre%20catering%20para%20un%20evento" class="contacto-wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.832L.057 23.468a.5.5 0 00.61.611l5.7-1.477A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.956 9.956 0 01-5.073-1.383l-.362-.214-3.747.971.999-3.662-.235-.376A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Escribinos por WhatsApp
+    </a>
+
+      <div class="contacto-info">
+      <div class="contacto-info-item">
+        <p class="contacto-info-label">WhatsApp</p>
+        <p class="contacto-info-val">11-6511-7117</p>
+        <p class="contacto-info-val">11-3359-4726</p>
+      </div>
+      <div class="contacto-info-item">
+        <p class="contacto-info-label">Cobertura</p>
+        <p class="contacto-info-val">Todo GBA Norte</p>
+        <p class="contacto-info-val">Sin cargo de delivery</p>
+      </div>
+      <div class="contacto-info-item">
+        <p class="contacto-info-label">Respuesta</p>
+        <p class="contacto-info-val">En menos de 24 hs</p>
+        <p class="contacto-info-val">Propuesta a medida</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Punto Sushi Eventos · GBA Norte
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/541165117117?text=Hola%2C%20quisiera%20consultar%20sobre%20catering%20para%20un%20evento" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.832L.057 23.468a.5.5 0 00.61.611l5.7-1.477A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.956 9.956 0 01-5.073-1.383l-.362-.214-3.747.971.999-3.662-.235-.376A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+</body>
+</html>
